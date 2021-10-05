@@ -57,7 +57,7 @@ module.exports = {
     
         const data = matchedData(req);
 
-        //Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email
+        // Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email
         // const userCheck = await Usuarios.Usuarios.findOne({            
         //     where: {
         //         email: data.email
