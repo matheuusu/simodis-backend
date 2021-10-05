@@ -15,24 +15,24 @@ module.exports = {
 
         const data = matchedData(req);        
         
-        //Consultando se o usuário existe no banco. Equivale ao SELECT * FROM users WHERE nome = req.nome
+        //Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email
         const user = await Usuarios.Usuarios.findOne({            
             where: {
-                nome: data.nome
+                email: data.email
             }
         });
 
         //Se user for NULL, o Backend retorna a mensagem de erro.
         //Validando usuário
         if(!user){
-            res.json({error: 'Usuário e/ou senha inválidos!'});
+            res.json({error: 'Email e/ou senha inválidos!'});
             return;
         }
 
         //Validando a senha do usuário
-        const senhaCheck = await bcrypt.compare(data.senha, user.senha);
-        if(!senhaCheck){
-            res.json({error: 'Usuário e/ou senha inválidos!'});
+        const passwordCheck = await bcrypt.compare(data.password, user.password);
+        if(!passwordCheck){
+            res.json({error: 'Email e/ou senha inválidos!'});
             return;
         }
 
@@ -57,8 +57,20 @@ module.exports = {
     
         const data = matchedData(req);
 
+        //Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email
+        // const userCheck = await Usuarios.Usuarios.findOne({            
+        //     where: {
+        //         email: data.email
+        //     }
+        // });
+
+        // if(userCheck){
+        //     res.json({error: 'Email já cadastrado!'});
+        //     return;
+        // // 
+
         //Criptografando Senha do usuário
-        const senha = await bcrypt.hash(data.senha, 10);
+        const password = await bcrypt.hash(data.password, 10);
         
         //Concatenando Data atual mais Número Randómico para o Hash
         const payload = (Date.now() + Math.random()).toString();
@@ -71,21 +83,20 @@ module.exports = {
         
         //Inserindo Registro no banco com esta estrutura
         const user = Usuarios.Usuarios.build({
-            nome: data.nome,
-            senha: senha,
-            matricula: data.matricula,
-            curso: data.curso,
-            token: token,
+            name: data.name,
+            password,
+            enrollment: data.enrollment,            
+            token,
+            email: data.email            
     
         })
         //Salvando Instancia do Model Usuarios no Banco, garantindo persistência dos dados
         await user.save();
-        console.log();
-        console.log(user.nome);
-        console.log(user.matricula);
+        console.log("Usuário cadastrado com sucesso!");
+        console.log(user.email);        
     
         //Resposta da Requisição na Aplicação
-        res.json({nome: user.nome, matricula: user.matricula});
+        res.json({token});
     }
     
 }

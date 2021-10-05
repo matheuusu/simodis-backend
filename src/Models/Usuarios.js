@@ -1,19 +1,23 @@
+const { STRING } = require('sequelize');
 const Sequelize = require('sequelize');
 const sequelize = require('../Dao/DB');
 
 module.exports = {
     //Model de Usuário: os dados serão registrados no Banco com essa estrutura
     Usuarios: sequelize.define('users', {
-        nome: {
+        name: {
             type: Sequelize.STRING
         },
-        senha: {
+        password: {
             type: Sequelize.STRING
         },    
-        matricula: {
+        enrollment: {
             type: Sequelize.INTEGER
         },
-        curso: {
+        email: {
+            type: Sequelize.STRING
+        },
+        roles_id: {
             type: Sequelize.STRING
         },
         token: {

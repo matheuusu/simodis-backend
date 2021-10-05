@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "startdev": "nodemon server.js"
+    "startdev": "nodemon App.js"
   },
   "author": "Simodis",
   "license": "ISC",

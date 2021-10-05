@@ -21,6 +21,6 @@ server.use(express.static(__dirname+'public'));
 
 server.use('/', apiRoutes);
 
-server.listen(process.env.PORT, () =>{
-    console.log(` Rodadndo no endereço: ${process.env.DATABASE}`);
-});
+module.exports = server;
+
+

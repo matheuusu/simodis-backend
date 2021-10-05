@@ -2,29 +2,30 @@ const { checkSchema } = require('express-validator');
 
 module.exports = {
     signup: checkSchema({
-        nome: {
+        name: {
             notEmpty: true,
             errorMessage: 'Informe seu nome!'
         },
-        senha: {
+        password: {
             isLength: {
                 options: {  min: 5 }
             }        
         },
-        matricula: {
-            isLength: {
-                options: {  min: 8 }
-            }   
-        },
-        curso: {
+        email: {
             notEmpty: true
+        },
+        enrollment: {
+            notEmpty: true
+        },
+        roles_id: {
+            optional: true
         }
     }),
     signin: checkSchema({
-        nome: {
+        email: {
             notEmpty: true
         },
-        senha: {
+        password: {
             notEmpty: true
         }
     })
