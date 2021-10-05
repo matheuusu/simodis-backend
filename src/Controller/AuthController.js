@@ -58,7 +58,7 @@ module.exports = {
         const data = matchedData(req);
 
         //Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email
-        const userCheck = await Usuarios.Usuarios.findOne({            
+        /*const userCheck = await Usuarios.Usuarios.findOne({            
             where: {
                 email: data.email
             }
@@ -67,7 +67,7 @@ module.exports = {
         if(userCheck){
             res.json({error: 'Email já cadastrado!'});
             return;
-        }
+        }*/
 
         //Criptografando Senha do usuário
         const password = await bcrypt.hash(data.password, 10);
