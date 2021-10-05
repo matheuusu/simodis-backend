@@ -67,7 +67,7 @@ module.exports = {
         // if(userCheck){
         //     res.json({error: 'Email já cadastrado!'});
         //     return;
-        // // 
+        
 
         //Criptografando Senha do usuário
         const password = await bcrypt.hash(data.password, 10);
