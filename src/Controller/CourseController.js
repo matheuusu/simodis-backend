@@ -14,13 +14,13 @@ module.exports = {
         
         const data = matchedData(req);
         //Verificando se course já existe.
-        const checkCourse = await Course.Course.findOne({name: data.name});
+        // const checkCourse = await Course.Course.findOne({name: data.name});
 
         //Caso checkCourse for TRUE, response error course já existe.
-        if(checkCourse){
-            res.json({error: 'Curso já cadastrado'});
-            return;
-        }
+        // if(checkCourse){
+        //     res.json({error: 'Curso já cadastrado'});
+        //     return;
+        // }
 
         // Se a tabela não existir, ele cria automaticamente. Por isso, o métod sync() não tem parâmetros.
         // Caso a tabela já exista, ele não faz nada. Se precisar forçar a criação de várias, utilizar o método assim: sync({ force: true})
