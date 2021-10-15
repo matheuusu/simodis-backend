@@ -2,15 +2,18 @@ const bcrypt = require('bcrypt');
 const { validationResult, matchedData } = require('express-validator');
 
 //Importando o Model Usuários
-const Usuarios = require('../Models/Usuarios');
+const { Usuarios} = require('../Models/Usuarios');
 //Importando o Model Course
-const Course = require('../Models/Course');
+const { Course } = require('../Models/Course');
 //Importando o Model Grades
-const Grades = require('../Models/Grades');
+const { Grades } = require('../Models/Grades');
+
+const { Class } = require('../Models/Class');
+
 
 module.exports = {
     getUsers: async (req, res) => {
-       let users = await Usuarios.Usuarios.findAll();
+       let users = await Usuarios.findAll();
 
         res.json({users});
     },
@@ -18,28 +21,26 @@ module.exports = {
     infoUsers: async (req, res) =>{
         let token = await req.query.token;
         //Pegando as informações do usuário
-        let user = await Usuarios.Usuarios.findOne({token});
+        let user = await Usuarios.findOne({token});
 
-        //Pegando todos os cursos do usuário
-        let course = await Course.Course.findAll({users_id: user.id});
+        let classes = await Class.findAll({users_id: user.id});        
+        let coursers = await Course.findAll();
+        let inforUser = [];        
 
-        //Pegando todas as notas
-        let grades = await Grades.Grades.findAll();
-
-        let information = [];
-
-            for(let j in course){
-                for(let i in grades){
-                    if(course[j].id == grades[i].course_id && user.id == grades[i].users_id){
-                        information.push({
-                            course_name: course[j].name,
-                            grade_score: grades[i].score
-                        })
-                    }
+        for(let i in classes){
+            for(let j in coursers){
+                if(classes[i].course_id === coursers[j].id){                    
+                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    inforUser.push({                                                
+                        id: coursers[j].id,
+                        course: coursers[j].name,
+                        grades: grade[j].scors                           
+                    })
                 }
             }
+        }                        
 
-        res.json({name: user.name, information});
+        res.json({name: user.name, enrollment: user.enrollment, email: user.email, inforUser});
     },
 
     updateUser: async (req, res) => {
@@ -51,7 +52,7 @@ module.exports = {
 
         const data = matchedData(req);        
 
-        const user = await Usuarios.Usuarios.findOne({token: data.token});
+        const user = await Usuarios.findOne({token: data.token});
         if(data.novoName){
             user.name = data.novoName;
         }

@@ -9,9 +9,6 @@ module.exports = {
         },
         description: {
             type: Sequelize.STRING
-        },
-        users_id: {
-            type: Sequelize.INTEGER
         }
     })
     
