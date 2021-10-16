@@ -89,7 +89,8 @@ module.exports = {
             password,
             enrollment,            
             token,
-            email: data.email            
+            email: data.email,
+            isAdmin: data.isAdmin
     
         })
         //Salvando Instancia do Model Usuarios no Banco, garantindo persistência dos dados
