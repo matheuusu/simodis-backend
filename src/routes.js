@@ -40,7 +40,7 @@ router.get('/class/list', ClassController.getClass);
 router.post('/grade/add', Auth.private, GradeController.create);
 
 //Listar todas as notas.
-router.get('/grades/list', GradeController.getGrades); 
+router.get('/grade/list', GradeController.getGrades); 
 
 router.get('/me',(req, res) => {
     res.render('/me');
