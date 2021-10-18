@@ -1,4 +1,3 @@
-const { STRING } = require('sequelize');
 const Sequelize = require('sequelize');
 const sequelize = require('../Dao/DB');
 
@@ -17,8 +16,8 @@ module.exports = {
         email: {
             type: Sequelize.STRING
         },
-        roles_id: {
-            type: Sequelize.STRING
+        isAdmin: {
+            type: Sequelize.BOOLEAN
         },
         token: {
             type: Sequelize.STRING

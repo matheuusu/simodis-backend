@@ -1,6 +1,6 @@
 const { validationResult, matchedData, checkSchema } = require('express-validator');
 
-const Course = require('../Models/Course');
+const { Course } = require('../Models/Course');
 
 module.exports = {
     addCoursers: async (req, res) => {
@@ -13,23 +13,24 @@ module.exports = {
         }
         
         const data = matchedData(req);
-        //Verificando se course já existe.
-        // const checkCourse = await Course.Course.findOne({name: data.name});
-
-        //Caso checkCourse for TRUE, response error course já existe.
-        // if(checkCourse){
-        //     res.json({error: 'Curso já cadastrado'});
-        //     return;
-        // }
 
         // Se a tabela não existir, ele cria automaticamente. Por isso, o métod sync() não tem parâmetros.
         // Caso a tabela já exista, ele não faz nada. Se precisar forçar a criação de várias, utilizar o método assim: sync({ force: true})
-        Course.Course.sync();
+        Course.sync();
 
-        const course = await Course.Course.build({
+        //Verificando se course já existe.
+        const coursers = await Course.findAll();
+
+        //Caso checkCourse for TRUE, response error course já existe.
+        for(let i in coursers)
+        if(coursers[i].name === data.name){
+            res.json({error: 'Curso já cadastrado'});
+            return;
+        }   
+
+        const course = await Course.build({
             name: data.name,
-            description: data.description,            
-            users_id: data.users_id
+            description: data.description,                        
         });
 
         await course.save();
@@ -42,7 +43,7 @@ module.exports = {
     getCoursers: async (req, res) => {
         //Pegando todos os cursos.
         //SELECT * FROM coursers.
-       let coursers = await Course.Course.findAll();
+       let coursers = await Course.findAll();
        
        res.json({coursers});
     }

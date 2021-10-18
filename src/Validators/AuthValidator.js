@@ -13,12 +13,6 @@ module.exports = {
         },
         email: {
             notEmpty: true
-        },
-        enrollment: {
-            notEmpty: true
-        },
-        roles_id: {
-            optional: true
         }
     }),
     signin: checkSchema({
