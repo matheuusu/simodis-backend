@@ -13,5 +13,5 @@ module.exports = {
         course_id: {
             type: Sequelize.INTEGER
         }
-    })    
+    })
 }

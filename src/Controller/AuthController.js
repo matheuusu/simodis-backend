@@ -75,7 +75,7 @@ module.exports = {
         //Concatenando Data atual mais Número Randómico para o Hash
         const payload = (Date.now() + Math.random()).toString();
         //Gerando Hash 10 para o token de autenticação
-        const token = await bcrypt.hash(payload, 10);  
+        const token = await bcrypt.hash(payload, 10);
         
         // Se a tabela não existir, ele cria automaticamente. Por isso, o métod sync() não tem parâmetros.
         // Caso a tabela já exista, ele não faz nada. Se precisar forçar a criação de várias, utilizar o método assim: sync({ force: true})
