@@ -21,16 +21,29 @@ module.exports = {
     infoUsers: async (req, res) =>{
         let token = await req.query.token;
         //Pegando as informações do usuário
-        let user = await Usuarios.findOne({token});
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
 
-        let classes = await Class.findAll({users_id: user.id});        
+        let classes = await Class.findAll({
+            where: {
+                users_id: user.id
+            }           
+          });        
         let coursers = await Course.findAll();
         let inforUser = [];        
 
         for(let i in classes){
             for(let j in coursers){
                 if(classes[i].course_id === coursers[j].id){                    
-                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    let grade = await Grades.findAll({
+                        where: {
+                            users_id: user.id,
+                            course_id: coursers[j].id
+                        }
+                    });
                     inforUser.push({                                                
                         id: coursers[j].id,
                         course: coursers[j].name,
@@ -52,7 +65,11 @@ module.exports = {
 
         const data = matchedData(req);        
 
-        const user = await Usuarios.findOne({token: data.token});
+        const user = await Usuarios.findOne({
+            where: {
+                token: data.token
+            }
+        });
         if(data.novoName){
             user.name = data.novoName;
         }
