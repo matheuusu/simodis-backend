@@ -7,7 +7,11 @@ module.exports = {
         let { token, id } = await req.query;
         let { grade } = await req.body;
 
-        let user = await Usuarios.findOne({token});
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
 
         if(!user){
             res.json({error: "Token inválido!"});
