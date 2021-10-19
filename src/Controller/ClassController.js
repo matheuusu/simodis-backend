@@ -6,7 +6,11 @@ module.exports = {
     create: async (req, res) => {
         let { token, id } = await req.query;                     
         
-        let user = await Usuarios.findOne({token});
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
 
         if(!user){
             res.json({error: "Token inválido!"});
