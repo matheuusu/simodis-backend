@@ -18,7 +18,8 @@ module.exports = {
         res.json({users});
     },
 
-    let token = await req.query.token;
+    infoUsers: async (req, res) =>{
+        let token = await req.query.token;
         //Pegando as informações do usuário
         let user = await Usuarios.findOne({token});
 
