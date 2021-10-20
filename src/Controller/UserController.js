@@ -40,7 +40,7 @@ module.exports = {
             }
         }                        
 
-        res.json({name: user.name, enrollment: user.enrollment, email: user.email}, inforUser);
+        res.json({name: user.name, enrollment: user.enrollment, email: user.email, info: inforUser});
     },
 
     updateUser: async (req, res) => {
