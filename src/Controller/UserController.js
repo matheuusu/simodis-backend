@@ -18,39 +18,28 @@ module.exports = {
         res.json({users});
     },
 
-    infoUsers: async (req, res) =>{
-        let token = await req.query.token;
-        let inforUser = [];
-        
-        let user = await Usuarios.findOne({
-            where: {
-                token: token
+    let token = await req.query.token;
+        //Pegando as informações do usuário
+        let user = await Usuarios.findOne({token});
+
+        let classes = await Class.findAll({users_id: user.id});        
+        let coursers = await Course.findAll();
+        let inforUser = [];        
+
+        for(let i in classes){
+            for(let j in coursers){
+                if(classes[i].course_id === coursers[j].id){                    
+                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    inforUser.push({                                                
+                        id: coursers[j].id,
+                        course: coursers[j].name,
+                        grades: grade[j].scors                           
+                    })
+                }
             }
-        });
+        }                        
 
-        let classes = await Class.findAll({
-            where: {
-                users_id: user.id
-            }           
-          });        
-        let grades = await Grades.findAll({
-            where: {
-                users_id: user.id
-            }        
-        });
-
-        let coursers = await Course.findAll({});
-
-        for(let i in coursers){
-            if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
-                inforUser.push({                    
-                    course: coursers[i].name,
-                    grades: grades[i].scors
-                });
-            }
-        }
-
-        res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
+        res.json({name: user.name, enrollment: user.enrollment, email: user.email, inforUser});
     },
 
     updateUser: async (req, res) => {
