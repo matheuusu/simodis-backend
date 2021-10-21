@@ -62,7 +62,7 @@ module.exports = {
             }
         }               
 
-        res.json({coursersAndGrades});
+        res.json({mycourse: coursersAndGrades});
     },
 
     getCoursers: async (req, res) => {        
