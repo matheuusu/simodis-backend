@@ -31,7 +31,10 @@ module.exports = {
             for(let j in coursers){
                 if(classes[i].course_id === coursers[j].id){                    
                     let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
-                    inforUser.push({                                                
+                    inforUser.push({ 
+                        name: user.name,
+                        enrollment: user.enrollment,
+                        email: user.email,
                         id: coursers[j].id,
                         course: coursers[j].name,
                         grades: grade[j].scors                           
