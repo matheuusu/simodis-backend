@@ -43,7 +43,7 @@ module.exports = {
             }
         }               
 
-        res.json(inforUser);
+        res.json({inforUser});
     },
 
     updateUser: async (req, res) => {
