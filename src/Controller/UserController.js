@@ -18,7 +18,7 @@ module.exports = {
         res.json({users});
     },
 
-    infoUsers: async (req, res) =>{
+    infoUsers: async (req, res) => {
         let token = await req.query.token;        
         let user = await Usuarios.findOne({
             where: {
