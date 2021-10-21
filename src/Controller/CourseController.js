@@ -45,7 +45,12 @@ module.exports = {
             }
         });
 
-        let classes = await Class.findAll({users_id: user.id});        
+        let classes = await Class.findAll({users_id: user.id}); 
+        
+        if(classes.length === 0){
+            res.json({});
+            return;
+        }
         let coursers = await Course.findAll();
         let coursersAndGrades = [];        
 
