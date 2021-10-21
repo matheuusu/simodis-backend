@@ -38,12 +38,16 @@ module.exports = {
                     })
                 }
             }
-        }    
-        let name = user.name;
-        let enrollment = user.enrollment;
-        let email = user.email;
+        }       
+        let info = [];
+        info.push({
+            name: user.name,
+            enrollment: user.enrollment,
+            email: user.email,
+            array: Array.from(inforUser)
+        });
 
-        res.json(name +" "+ enrollment+ " "+ email+ " "+ inforUser);
+        res.json(info);
     },
 
     updateUser: async (req, res) => {
