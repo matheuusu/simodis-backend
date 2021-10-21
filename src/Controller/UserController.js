@@ -31,10 +31,7 @@ module.exports = {
             for(let j in coursers){
                 if(classes[i].course_id === coursers[j].id){                    
                     let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
-                    inforUser.push({ 
-                        name: user.name,
-                        enrollment: user.enrollment,
-                        email: user.email,
+                    inforUser.push({                         
                         id: coursers[j].id,
                         course: coursers[j].name,
                         grades: grade[j].scors                           
@@ -43,7 +40,7 @@ module.exports = {
             }
         }               
 
-        res.json({inforUser});
+        res.json({name: user.name, enrollment: user.enrollment, email: user.email, inforUser});
     },
 
     updateUser: async (req, res) => {
