@@ -1,15 +1,7 @@
 const bcrypt = require('bcrypt');
 const { validationResult, matchedData } = require('express-validator');
 
-//Importando o Model Usuários
 const { Usuarios} = require('../Models/Usuarios');
-//Importando o Model Course
-const { Course } = require('../Models/Course');
-//Importando o Model Grades
-const { Grades } = require('../Models/Grades');
-
-const { Class } = require('../Models/Class');
-
 
 module.exports = {
     getUsers: async (req, res) => {
