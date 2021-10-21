@@ -1,11 +1,12 @@
 const { validationResult, matchedData, checkSchema } = require('express-validator');
 
+const { Usuarios} = require('../Models/Usuarios');
 const { Course } = require('../Models/Course');
+const { Grades } = require('../Models/Grades');
+const { Class } = require('../Models/Class');
 
 module.exports = {
-    addCoursers: async (req, res) => {
-        //Retorna TRUE caso os campos se enquadrem no modelo de CourseValidator.
-        //Se a resposta for false, recebe a mensagem de erro de CourseValidator.
+    addCoursers: async (req, res) => {       
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             res.json({error: errors.mapped()});
@@ -14,14 +15,10 @@ module.exports = {
         
         const data = matchedData(req);
 
-        // Se a tabela não existir, ele cria automaticamente. Por isso, o métod sync() não tem parâmetros.
-        // Caso a tabela já exista, ele não faz nada. Se precisar forçar a criação de várias, utilizar o método assim: sync({ force: true})
         Course.sync();
-
-        //Verificando se course já existe.
+        
         const coursers = await Course.findAll();
-
-        //Caso checkCourse for TRUE, response error course já existe.
+        
         for(let i in coursers)
         if(coursers[i].name === data.name){
             res.json({error: 'Curso já cadastrado'});
@@ -40,9 +37,35 @@ module.exports = {
         res.json({Ok: true});
     },
 
-    getCoursers: async (req, res) => {
-        //Pegando todos os cursos.
-        //SELECT * FROM coursers.
+    myCourse: async (req, res) => {
+        let token = await req.query.token;        
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
+
+        let classes = await Class.findAll({users_id: user.id});        
+        let coursers = await Course.findAll();
+        let coursersAndGrades = [];        
+
+        for(let i in classes){
+            for(let j in coursers){
+                if(classes[i].course_id === coursers[j].id){                    
+                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    coursersAndGrades.push({                         
+                        id: coursers[j].id,
+                        course: coursers[j].name,
+                        grades: grade[j].scors                           
+                    })
+                }
+            }
+        }               
+
+        res.json(coursersAndGrades);
+    },
+
+    getCoursers: async (req, res) => {        
        let coursers = await Course.findAll();
        
        res.json({coursers});
