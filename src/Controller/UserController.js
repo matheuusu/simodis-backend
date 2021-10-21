@@ -38,16 +38,9 @@ module.exports = {
                     })
                 }
             }
-        }       
-        let info = [];
-        info.push({
-            name: user.name,
-            enrollment: user.enrollment,
-            email: user.email,
-            array: Array.from(inforUser)
-        });
+        }               
 
-        res.json(info);
+        res.json({name: user.name, enrollment: user.enrollment, email: user.email, inforUser});
     },
 
     updateUser: async (req, res) => {
