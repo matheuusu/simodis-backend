@@ -56,7 +56,13 @@ module.exports = {
             return;
         }
         let coursers = await Course.findAll();
-        let coursersAndGrades = [];        
+        let coursersAndGrades = [];
+        
+        coursersAndGrades.push({
+            id: '',
+            course: "Cursos",
+            grades: ''
+        });
 
         for(let i in classes){
             for(let j in coursers){
