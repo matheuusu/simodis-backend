@@ -13,6 +13,9 @@ module.exports = {
         },
         email: {
             notEmpty: true
+        },
+        isAdmin: {
+            notEmpty: true
         }
     }),
     signin: checkSchema({
