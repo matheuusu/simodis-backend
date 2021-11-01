@@ -45,7 +45,7 @@ module.exports = {
         //Salvando as alteração do token
         await user.save();
 
-        res.json({token: user.token});
+        res.json({token: user.token, isAdmin: user.isAdmin});
     },
 
     signup: async (req, res) => {
@@ -99,7 +99,7 @@ module.exports = {
         console.log(user.email);        
     
         //Resposta da Requisição na Aplicação
-        res.json({token});
+        res.json({token, isAdmin: data.isAdmin});
     }
     
 }
