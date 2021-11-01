@@ -5,7 +5,11 @@ const { Usuarios} = require('../Models/Usuarios');
 
 module.exports = {
     getUsers: async (req, res) => {
-       let users = await Usuarios.findAll();
+       let users = await Usuarios.findAll({
+            where: {
+                isAdmin: false
+            }
+       });
 
         res.json({users});
     },
