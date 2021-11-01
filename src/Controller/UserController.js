@@ -7,7 +7,7 @@ module.exports = {
     getUsers: async (req, res) => {
        let users = await Usuarios.findAll({
             where: {
-                isAdmin: false
+                isAdmin: 0
             }
        });
 
