@@ -2,10 +2,13 @@ const { checkSchema } = require('express-validator');
 
 module.exports = {
     addQuestions: checkSchema({
-        title: {
+        id_questions: {
             notEmpty: true            
         },
-        course_id: {
+        content: {
+            notEmpty: true
+        },
+        isTrue: {
             notEmpty: true
         }
     })

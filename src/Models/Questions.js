@@ -7,9 +7,6 @@ module.exports = {
         title: {
             type: Sequelize.STRING
         },
-        content: {
-            type: Sequelize.STRING
-        },
         course_id: {
             type: Sequelize.INTEGER
         }

@@ -10,7 +10,7 @@ module.exports = {
         let user = await Usuarios.findOne({
             where: {
                 token: token
-            }
+            }                
         });
 
         if(!user){

@@ -1,29 +1,58 @@
 const bcrypt = require('bcrypt');
 const { validationResult, matchedData } = require('express-validator');
 
+//Importando o Model Usuários
 const { Usuarios} = require('../Models/Usuarios');
+//Importando o Model Course
+const { Course } = require('../Models/Course');
+//Importando o Model Grades
+const { Grades } = require('../Models/Grades');
+
+const { Class } = require('../Models/Class');
+
 
 module.exports = {
     getUsers: async (req, res) => {
-       let users = await Usuarios.findAll({
-            where: {
-                isAdmin: 0
-            }
-       });
+       let users = await Usuarios.findAll();
 
         res.json({users});
     },
 
-    infoUsers: async (req, res) => {
-        let token = await req.query.token;        
+    infoUsers: async (req, res) =>{
+        let token = await req.query.token;
+        let inforUser = [];
+        
         let user = await Usuarios.findOne({
             where: {
                 token: token
             }
-        });             
+        });
 
-        res.json({name: user.name, enrollment: user.enrollment, email: user.email});
+        let classes = await Class.findAll({
+            where: {
+                users_id: user.id
+            }           
+          });        
+        let grades = await Grades.findAll({
+            where: {
+                users_id: user.id
+            }        
+        });
+
+        let coursers = await Course.findAll();        
+
+        for(let i in coursers){
+            if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
+                inforUser.push({                    
+                    course: coursers[i].name,
+                    grades: grades[i].scors
+                });
+            }
+        }
+
+        res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
     },
+
 
     updateUser: async (req, res) => {
         const errors = validationResult(req);

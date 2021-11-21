@@ -45,7 +45,7 @@ module.exports = {
         //Salvando as alteração do token
         await user.save();
 
-        res.json({token: user.token, isAdmin: user.isAdmin});
+        res.json({token: user.token});
     },
 
     signup: async (req, res) => {
@@ -63,7 +63,7 @@ module.exports = {
         Usuarios.sync();
         
         //Consultando se o email é válido, isto é, se está cadastrado. Equivale ao SELECT * FROM users WHERE email = req.email        
-        /*const userCheck = await Usuarios.Usuarios.findOne({            
+        const userCheck = await Usuarios.findOne({            
             where: {
                 email: data.email
             }
@@ -71,7 +71,7 @@ module.exports = {
         if(userCheck){
             res.json({error: 'Email já cadastrado!'});
             return;
-        }*/
+        }
 
         //Criptografando Senha do usuário
         const password = await bcrypt.hash(data.password, 10);
@@ -79,7 +79,7 @@ module.exports = {
         //Concatenando Data atual mais Número Randómico para o Hash
         const payload = (Date.now() + Math.random()).toString();
         //Gerando Hash 10 para o token de autenticação
-        const token = await bcrypt.hash(payload, 10);
+        const token = await bcrypt.hash(payload, 10);    
         
         const enrollment = '1101' + Math.floor(Math.random() * 1000);
         
@@ -90,7 +90,7 @@ module.exports = {
             enrollment,            
             token,
             email: data.email,
-            isAdmin: data.isAdmin
+	        isAdmin: data.isAdmin            
     
         })
         //Salvando Instancia do Model Usuarios no Banco, garantindo persistência dos dados
@@ -99,7 +99,7 @@ module.exports = {
         console.log(user.email);        
     
         //Resposta da Requisição na Aplicação
-        res.json({token, isAdmin: data.isAdmin});
+        res.json({token});
     }
     
 }
