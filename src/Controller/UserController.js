@@ -28,27 +28,6 @@ module.exports = {
             }
         });
 
-        let classes = await Class.findAll({
-            where: {
-                users_id: user.id
-            }           
-          });        
-        let grades = await Grades.findAll({
-            where: {
-                users_id: user.id
-            }        
-        });
-
-        let coursers = await Course.findAll();        
-
-        for(let i in coursers){
-            if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
-                inforUser.push({                    
-                    course: coursers[i].name,
-                    grades: grades[i].scors
-                });
-            }
-        }
 
         res.json({name: user.name, email: user.email, enrollment: user.enrollment});
     },
