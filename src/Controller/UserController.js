@@ -50,7 +50,7 @@ module.exports = {
             }
         }
 
-        res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
+        res.json({name: user.name, email: user.email, enrollment: user.enrollment});
     },
 
 
