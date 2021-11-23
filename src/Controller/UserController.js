@@ -27,6 +27,17 @@ module.exports = {
                 token: token
             }
         });
+        
+        let classes = await Class.findAll({
+            where: {
+                users_id: user.id
+            }           
+          });        
+        let grades = await Grades.findAll({
+            where: {
+                users_id: user.id
+            }        
+        });
 
 
         res.json({name: user.name, email: user.email, enrollment: user.enrollment});
