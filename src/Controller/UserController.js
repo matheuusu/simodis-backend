@@ -21,8 +21,7 @@ module.exports = {
     infoUsers: async (req, res) =>{
         let token = await req.query.token;
         let inforUser = [{
-            course: "",
-            grades:
+            course: ""
         }];
         
         let user = await Usuarios.findOne({
