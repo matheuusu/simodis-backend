@@ -39,16 +39,11 @@ module.exports = {
             }        
         });
         
-        let coursers = await Course.findAll();        
-
-        for(let i in coursers){
-            if(coursers[i].id == grades[i].course_id && classes[i].course_id == coursers[i].id){
-                inforUser.push({                    
-                    course: coursers[i].name,
-                    grades: grades[i].scors
-                });
-            }
-        }
+        let coursers = await Course.findAll();       
+        
+        console.log(coursers[0].id);
+        console.log(grades[0].course_id);
+        console.log(classes[0].course_id);
 
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
     },
