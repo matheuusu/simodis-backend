@@ -47,6 +47,7 @@ module.exports = {
         for(let i in coursers){
             if(grades[i].course_id !== null && classes[i].course_id !== null) {
                 console.log("Entrou");
+            } else{
             }
         }
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
