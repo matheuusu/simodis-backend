@@ -22,7 +22,7 @@ module.exports = {
         let token = await req.query.token;
         let inforUser = [{
             course: "",
-            grades:""
+            grades:
         }];
         
         let user = await Usuarios.findOne({
