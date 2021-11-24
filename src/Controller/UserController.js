@@ -46,12 +46,7 @@ module.exports = {
         
         for(let i in coursers){
             if(grades[i].course_id !== null && classes[i].course_id !== null) {
-                if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
-                    inforUser.push({                    
-                        course: coursers[i].name,
-                        grades: grades[i].scors
-                    });
-                }
+                console.log("Entrou");
             }
         }
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
