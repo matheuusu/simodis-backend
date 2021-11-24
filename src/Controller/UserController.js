@@ -45,9 +45,10 @@ module.exports = {
         let coursers = await Course.findAll();       
         
         for(let i in coursers){
-            if(grades[i].course_id !== null && classes[i].course_id !== null) {
+            if(grades[i].course_id && classes[i].course_id) {
                 console.log("Entrou");
             } else{
+                console.log("Diferente");
             }
         }
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
