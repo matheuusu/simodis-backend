@@ -52,20 +52,18 @@ module.exports = {
         let coursers = await Course.findAll();
         let coursersAndGrades = [];        
 
-        for(let j in coursers){
-            for(let i in classes){
-                if(typeof(classes[i]) !== 'undefined' && typeof(grades[i]) !== 'undefined'){
-                    if(classes[i].course_id === coursers[j].id){                    
-                        let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
-                        coursersAndGrades.push({                         
-                            id: coursers[j].id,
-                            course: coursers[j].name,
-                            grades: grade[j].scors                           
-                        })
-                    }
+        for(let i in classes){
+            for(let j in coursers){
+                if(classes[i].course_id === coursers[j].id){                    
+                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    coursersAndGrades.push({                         
+                        id: coursers[j].id,
+                        course: coursers[j].name,
+                        grades: grade[j].scors                           
+                    })
                 }
             }
-        }               
+        }              
 
         res.json(coursersAndGrades);
     },
