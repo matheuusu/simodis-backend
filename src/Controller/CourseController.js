@@ -54,7 +54,7 @@ module.exports = {
         let classes = await Class.findAll({users_id: user.id});        
         let coursers = await Course.findAll();
         let coursersAndGrades = [{
-            course: " "
+            course: "Cursos"
         }];        
 
         for(let i in classes){
