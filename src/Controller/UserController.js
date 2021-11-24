@@ -43,7 +43,7 @@ module.exports = {
         
         for(let i in coursers){
             if(typeof(grades[i]) !== 'undefined' && typeof(classes[i]) !== 'undefined') {
-                if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
+                if(coursers[i].id == grades[i].course_id && classes[i].course_id == coursers[i].id){
                     inforUser.push({                    
                         course: coursers[i].name,
                         grades: grades[i].scors
