@@ -46,9 +46,12 @@ module.exports = {
         
         for(let i in coursers){
             if(typeof(grades[i]) !== 'undefined' && typeof(classes[i]) !== 'undefined') {
-                console.log("Entrou");
-            } else{
-                console.log("Diferente");
+                if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
+                    inforUser.push({                    
+                        course: coursers[i].name,
+                        grades: grades[i].scors
+                    });
+                }
             }
         }
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
