@@ -68,7 +68,7 @@ module.exports = {
             }
         }              
 
-        res.json(coursersAndGrades);
+        res.json({coursersAndGrades});
     },
 
     getCoursers: async (req, res) => {
