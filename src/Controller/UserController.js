@@ -45,7 +45,7 @@ module.exports = {
         let coursers = await Course.findAll();       
         
         for(let i in coursers){
-            if(grades[i].course_id && classes[i].course_id) {
+            if(typeof(grades[i]) !== 'undefined' && typeof(classes[i]) !== 'undefined') {
                 console.log("Entrou");
             } else{
                 console.log("Diferente");
