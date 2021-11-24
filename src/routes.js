@@ -30,6 +30,8 @@ router.get('/user/info', Auth.private, UserController.infoUsers);
 //Rota de cadastrado de Curso
 router.post('/course/add', CourseValidator.addCourse, Auth.private, CourseController.addCoursers);
 
+router.get('/course/mycourse', Auth.private, CourseController.myCourse);
+
 //Listar cursos
 router.get('/course/list', CourseController.getCoursers);
 
