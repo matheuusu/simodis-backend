@@ -39,6 +39,36 @@ module.exports = {
 
         res.json({Ok: true});
     },
+    
+    myCourse: async (req, res) => {
+        let token = await req.query.token;        
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
+
+        let classes = await Class.findAll({users_id: user.id});        
+        let coursers = await Course.findAll();
+        let coursersAndGrades = [];        
+
+        for(let j in coursers){
+            for(let i in classes){
+                if(typeof(classes[i]) !== 'undefined' && typeof(grades[i]) !== 'undefined'){
+                    if(classes[i].course_id === coursers[j].id){                    
+                        let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                        coursersAndGrades.push({                         
+                            id: coursers[j].id,
+                            course: coursers[j].name,
+                            grades: grade[j].scors                           
+                        })
+                    }
+                }
+            }
+        }               
+
+        res.json(coursersAndGrades);
+    },
 
     getCoursers: async (req, res) => {
         //Pegando todos os cursos.
