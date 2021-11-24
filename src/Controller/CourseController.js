@@ -1,6 +1,8 @@
 const { validationResult, matchedData, checkSchema } = require('express-validator');
 
 const { Usuarios } = require('../Models/Usuarios');
+const { Class } = require('../Models/Class');
+const { Grades } = require('../Models/Grades');
 const { Course } = require('../Models/Course');
 
 module.exports = {
