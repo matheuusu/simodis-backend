@@ -20,9 +20,7 @@ module.exports = {
 
     infoUsers: async (req, res) =>{
         let token = await req.query.token;
-        let inforUser = [{
-            course: ""
-        }];
+        let inforUser = [];
         
         let user = await Usuarios.findOne({
             where: {
