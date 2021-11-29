@@ -27,7 +27,7 @@ module.exports = {
                 token: token
             }
         });
-        
+
         let classes = await Class.findAll({
             where: {
                 users_id: user.id
@@ -38,19 +38,18 @@ module.exports = {
                 users_id: user.id
             }        
         });
-        
-        let coursers = await Course.findAll();       
-        
+
+        let coursers = await Course.findAll();        
+
         for(let i in coursers){
-            if(typeof(grades[i]) !== 'undefined' && typeof(classes[i]) !== 'undefined') {
-                if(coursers[i].id == grades[i].course_id && classes[i].course_id == coursers[i].id){
-                    inforUser.push({                    
-                        course: coursers[i].name,
-                        grades: grades[i].scors
-                    });
-                }
+            if(coursers[i].id === grades[i].course_id && classes[i].course_id === coursers[i].id){
+                inforUser.push({                    
+                    course: coursers[i].name,
+                    grades: grades[i].scors
+                });
             }
         }
+
         res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
     },
 

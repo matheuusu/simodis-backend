@@ -5,9 +5,15 @@ module.exports = {
         id_questions: {
             notEmpty: true            
         },
-        content: {
-            notEmpty: true
+
+        answer_false: {
+            optional: true
         },
+
+        answer_true: {
+            optional: true
+        },
+
         isTrue: {
             notEmpty: true
         }
