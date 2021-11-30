@@ -7,9 +7,6 @@ module.exports = {
         },
         course_id: {
             notEmpty: true
-        },
-        answer_true: {
-            optional: true
-        },
+        }
     })
 }

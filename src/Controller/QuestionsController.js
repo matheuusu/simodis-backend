@@ -1,8 +1,6 @@
 const { validationResult, matchedData } = require('express-validator');
 const { Questions } = require('../Models/Questions')
 
-const AnswersController = require('../Controller/AnswersController');
-
 module.exports = {
     create: async (req, res) => {
         const errors = validationResult(req);
@@ -16,10 +14,9 @@ module.exports = {
         Questions.sync();
 
         const questions  = await Questions.findAll({});
-        const title = data.title.split(",");
-        const id_questions = 0;
+        console.log(data.title)
         let count = 0;
-        let reqQuestion = title[0].split(" ");
+        let reqQuestion = data.title.split(" ");
         for(let i in questions){
             let question = questions[i].title.split(" ");
             for( let j in question){
@@ -35,20 +32,11 @@ module.exports = {
         }
 
         const newquestion = await Questions.build({
-            title: title[0],
+            title: data.title,
             course_id: data.course_id
         });
+
         await newquestion.save();
-
-        const quest = await Questions.findOne({
-            order: [['createdAt', 'DESC']]
-        });
-
-        for(let i=1; i < title.length; i++){
-            AnswersController.create(quest.id, '', title[i], false);
-        }
-
-        AnswersController.create(quest.id, data.answer_true, '', true );
 
         res.json({});
     },

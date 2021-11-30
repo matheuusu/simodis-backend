@@ -1,5 +1,8 @@
 const { validationResult, matchedData, checkSchema } = require('express-validator');
 
+const { Usuarios } = require('../Models/Usuarios');
+const { Class } = require('../Models/Class');
+const { Grades } = require('../Models/Grades');
 const { Course } = require('../Models/Course');
 
 module.exports = {
@@ -38,6 +41,36 @@ module.exports = {
         console.log("Curso cadastrado com sucesso.");
 
         res.json({Ok: true});
+    },
+    
+    myCourse: async (req, res) => {
+        let token = await req.query.token;        
+        let user = await Usuarios.findOne({
+            where: {
+                token: token
+            }
+        });
+
+        let classes = await Class.findAll({users_id: user.id});        
+        let coursers = await Course.findAll();
+        let coursersAndGrades = [{
+            course: "Cursos"
+        }];        
+
+        for(let i in classes){
+            for(let j in coursers){
+                if(classes[i].course_id === coursers[j].id){                    
+                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    coursersAndGrades.push({                         
+                        id: coursers[j].id,
+                        course: coursers[j].name,
+                        grades: grade[j].scors                           
+                    })
+                }
+            }
+        }              
+
+        res.json({coursersAndGrades});
     },
 
     getCoursers: async (req, res) => {
