@@ -23,7 +23,7 @@ module.exports = {
     }),
 
     altPassword: checkSchema({
-        email: {
+        token: {
             notEmpty: true
         },
         newPassword: {
