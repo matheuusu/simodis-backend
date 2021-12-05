@@ -20,7 +20,7 @@ const { Usuarios } = require('./Models/Usuarios');
 
 router.post('/user/signup', AuthValidator.signup, AuthController.signup);
 router.post('/user/signin', AuthValidator.signin, AuthController.signin);
-router.get('/user/recoverpassword', UserValidator.recoverPassword, UserController.recoverPassword);
+router.post('/user/recoverpassword', UserValidator.recoverPassword, UserController.recoverPassword);
 router.get('/user/altpassword', UserValidator.altPassword, UserController.altPassword);
 router.put('/user/update', UserValidator.updateUser, Auth.private, UserController.updateUser);
 router.get('/user/listusers', UserController.getUsers);
