@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+    path: process.env.NODE_ENV == "development" ? ".env" : ".env.test"
+});
 const express = require('express');
 const cors = require('cors');
 const sequelize = require('./src/Dao/DB');

@@ -1,15 +1,13 @@
 const bcrypt = require('bcrypt');
+const { sign, verify } = require('jsonwebtoken');
 const { validationResult, matchedData } = require('express-validator');
 
-//Importando o Model Usuários
 const { Usuarios} = require('../Models/Usuarios');
-//Importando o Model Course
 const { Course } = require('../Models/Course');
-//Importando o Model Grades
 const { Grades } = require('../Models/Grades');
-
 const { Class } = require('../Models/Class');
 
+const transport = require('../../config/index');
 
 module.exports = {
     getUsers: async (req, res) => {
@@ -20,7 +18,6 @@ module.exports = {
 
     infoUsers: async (req, res) =>{
         let token = await req.query.token;
-        let inforUser = [];
         
         let user = await Usuarios.findOne({
             where: {
@@ -28,30 +25,7 @@ module.exports = {
             }
         });
         
-        let classes = await Class.findAll({
-            where: {
-                users_id: user.id
-            }           
-          });        
-        let grades = await Grades.findAll({
-            where: {
-                users_id: user.id
-            }        
-        });
-        
-        let coursers = await Course.findAll();       
-        
-        for(let i in coursers){
-            if(typeof(grades[i]) !== 'undefined' && typeof(classes[i]) !== 'undefined') {
-                if(coursers[i].id == grades[i].course_id && classes[i].course_id == coursers[i].id){
-                    inforUser.push({                    
-                        course: coursers[i].name,
-                        grades: grades[i].scors
-                    });
-                }
-            }
-        }
-        res.json({name: user.name, email: user.email, enrollment: user.enrollment, inforUser});
+        res.json({name: user.name, email: user.email, enrollment: user.enrollment});
     },
 
 
@@ -62,28 +36,85 @@ module.exports = {
             return;
         }
 
-        const data = matchedData(req);        
+        const data = matchedData(req);     
 
-        const user = await Usuarios.findOne({
-            where: {
-                token: data.token
-            }
-        });
         if(data.novoName){
-            user.name = data.novoName;
+            await Usuarios.update({name: data.novoName}, {
+                where: {
+                    token: data.token
+                }
+            })
         }
 
         if(data.novoEmail){
-            user.email = data.novoEmail;
+            await Usuarios.update({email: data.novoEmail}, {
+                where: {
+                    token: data.token
+                }
+            }) 
         }
 
         if (data.novaPassword){
             const passwordUpdate = await bcrypt.hash(data.novaPassword, 10);
-            user.password = passwordUpdate;
-        }        
-        user.save();
-        console.log("Update realizado com sucesso!");
+            await Usuarios.update({password: passwordUpdate}, {
+                where: {
+                    token: data.token
+                }
+            })
+        }      
+        
+        res.json({});
+    },
 
-        res.json({Ok: true});
+    recoverPassword: async (req, res) => {
+        const { email } = req.query;
+
+        const token = sign({email}, `${process.env.KEY_RECOVER_PASSWORD}`, {
+            expiresIn: "20m"
+        })
+
+        transport.sendMail({
+            from: `${process.env.SMTP_USER}`,
+            to: email,
+            subject: "Solicitação para alteração de senha",
+            html: 
+            `<html>
+                <body>
+                    <h1 style="color:red">Solicitação de alteração de Senha</h1>
+                    <h3>${token}</h3>
+                </body>
+            </html>`
+            
+        }, function (err) {
+            if(err){
+                return res.status(400).json({
+                    err,
+                    mensagem: 'E-mail não enviado com sucesso'
+                })
+            }
+        });
+
+        res.json({token, mensagem: "E-mail enviado com sucesso!"});
+    },
+
+    altPassword: (req, res) => {
+        const { token, newPassword } = req.query;
+
+        verify(token, `${process.env.KEY_RECOVER_PASSWORD}`, async function (err, decoded) {
+            if(err){
+                return res.json({
+                    err,
+                    mensagem: "Token inválido!"
+                })
+            }
+
+            await Usuarios.update({password: newPassword}, {
+                where: {
+                    email: decoded.email
+                }
+            })
+            
+            res.json({})
+        })
     }
 }

@@ -14,5 +14,20 @@ module.exports = {
         novaPassword: {
             optional: true
         }
+    }),
+
+    recoverPassword: checkSchema({
+        email: {
+            notEmpty: true
+        }
+    }),
+
+    altPassword: checkSchema({
+        email: {
+            notEmpty: true
+        },
+        newPassword: {
+            notEmpty: true
+        }
     })
 }
