@@ -79,7 +79,7 @@ module.exports = {
   },
 
   recoverPassword: async (req, res) => {
-    const { email } = req.body
+    const { email } = req.query
 
     const token = sign({ email }, `${process.env.KEY_RECOVER_PASSWORD}`, {
       expiresIn: '20m'
