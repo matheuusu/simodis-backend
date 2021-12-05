@@ -117,6 +117,8 @@ module.exports = {
                     mensagem: "Token inválido!"
                 })
             }
+            
+            console.log(decoded.email);
 
             await Usuarios.update({password: newPassword}, {
                 where: {
