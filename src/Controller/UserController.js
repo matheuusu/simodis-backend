@@ -118,9 +118,8 @@ module.exports = {
                 })
             }
             
-            console.log(decoded.email);
-
-            await Usuarios.update({password: newPassword}, {
+            const passwordUpdate = await bcrypt.hash(newPassword, 10);
+            await Usuarios.update({password: passwordUpdate}, {
                 where: {
                     email: decoded.email
                 }
