@@ -115,10 +115,6 @@ module.exports = {
               height: 400px;
               margin: 0 auto;
               color: #028082;
-      
-              display: flex;
-        flex-direction: column;
-              gap: 1rem;
             }
 
             .text {
