@@ -112,8 +112,6 @@ module.exports = {
         border-radius: 8px;
         width: 50rem;
         height: 21rem;
-        display: flex;
-        flex-direction: column;
         background-color: rgb(240, 242, 255);
       "
     >
@@ -126,7 +124,6 @@ module.exports = {
           border-bottom-left-radius: 0px;
           border-bottom-right-radius: 0px;
           display: flex;
-          flex-direction: column;
           align-content: center;
           justify-content: center;
         "
