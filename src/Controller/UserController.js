@@ -117,6 +117,7 @@ module.exports = {
               color: #028082;
       
               display: flex;
+        flex-direction: column;
               gap: 1rem;
             }
 
