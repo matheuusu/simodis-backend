@@ -117,7 +117,7 @@ module.exports = {
     >
       <div
         style="
-        margin-top: -1.1rem;
+          margin-top: -1.1rem;
           background-color: #3485ff;
           width: 50rem;
           height: 9rem;
