@@ -123,9 +123,6 @@ module.exports = {
           border-radius: 8px;
           border-bottom-left-radius: 0px;
           border-bottom-right-radius: 0px;
-          display: flex;
-          align-content: center;
-          justify-content: center;
         "
       >
         <h1 style="color: white">Solicitação de alteração de Senha</h1>
