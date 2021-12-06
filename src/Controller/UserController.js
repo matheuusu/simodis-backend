@@ -100,6 +100,7 @@ module.exports = {
         from: `${process.env.SMTP_USER}`,
         to: email,
         subject: 'Solicitação para alteração de senha',
+<<<<<<< HEAD
         html: `<html>
         <body>
     <div
@@ -156,6 +157,45 @@ module.exports = {
     </div>
   </body>
 </html>`
+=======
+        html: `
+        <html>
+          <head>
+            <style>
+              * {
+              box-sizing: border-box;
+            }
+      
+            .container {
+              background: #85d0bc;
+              border: 1px solid #028082;
+              width: 450px;
+              height: 400px;
+              margin: 0 auto;
+              color: #028082;
+            }
+
+            .text {
+              width: 80%;
+              margin: 0 auto;
+              padding: 1rem;
+              border: 1px solid #028082;
+              border-radius: 5px;
+            }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="text">
+                <p>${token}</p>
+              </div>
+              <div class="text">
+                <p>daquele jeitão</p>
+              </div>
+            </div>
+          </body>
+        </html>`
+>>>>>>> a76d039a016709b99e53d90cbaf58677f1432296
       },
       function (err) {
         if (err) {
