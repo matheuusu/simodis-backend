@@ -64,7 +64,7 @@ module.exports = {
         for(let i in classes){
             for(let j in coursers){
                 if(classes[i].course_id === coursers[j].id){                    
-                    let grade = await Grades.findAll({
+                    let grade = await Grades.findOne({
                         where: {
                             users_id: user.id, 
                             course_id: coursers[j].id
@@ -73,7 +73,7 @@ module.exports = {
                     coursersAndGrades.push({                         
                         id: coursers[j].id,
                         course: coursers[j].name,
-                        grades: grade[j].scors                           
+                        grades: grade.scors                           
                     })
                 }
             }
