@@ -112,10 +112,7 @@ module.exports = {
 
         verify(token, `${process.env.KEY_RECOVER_PASSWORD}`, async function (err, decoded) {
             if(err){
-                return res.json({
-                    err,
-                    mensagem: "Token inválido!"
-                })
+                return res.json({error: 'Token inválido!'})
             }
             
             const passwordUpdate = await bcrypt.hash(newPassword, 10);
