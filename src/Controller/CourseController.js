@@ -4,11 +4,11 @@ const { Usuarios } = require('../Models/Usuarios');
 const { Class } = require('../Models/Class');
 const { Grades } = require('../Models/Grades');
 const { Course } = require('../Models/Course');
+const { Questions } = require('../Models/Questions');
+const { Answers } = require('../Models/Answers');
 
 module.exports = {
     addCoursers: async (req, res) => {
-        //Retorna TRUE caso os campos se enquadrem no modelo de CourseValidator.
-        //Se a resposta for false, recebe a mensagem de erro de CourseValidator.
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             res.json({error: errors.mapped()});
@@ -17,14 +17,10 @@ module.exports = {
         
         const data = matchedData(req);
 
-        // Se a tabela não existir, ele cria automaticamente. Por isso, o métod sync() não tem parâmetros.
-        // Caso a tabela já exista, ele não faz nada. Se precisar forçar a criação de várias, utilizar o método assim: sync({ force: true})
         Course.sync();
 
-        //Verificando se course já existe.
         const coursers = await Course.findAll();
 
-        //Caso checkCourse for TRUE, response error course já existe.
         for(let i in coursers)
         if(coursers[i].name === data.name){
             res.json({error: 'Curso já cadastrado'});
@@ -83,10 +79,36 @@ module.exports = {
     },
 
     getCoursers: async (req, res) => {
-        //Pegando todos os cursos.
-        //SELECT * FROM coursers.
        let coursers = await Course.findAll();
        
        res.json({coursers});
+    },
+
+    TaskCourse: async (req, res) => {
+        const questions = await Questions.findAll({
+            where: {
+                course_id: req.query.id_course
+            }
+        });
+
+        let tasks_course = [];
+
+        for(let i in questions){
+            const answers = await Answers.findAll({
+                where: {
+                    id_questions: questions[i].id
+                }
+            });
+
+            
+            tasks_course.push({
+                question: questions[i].title,
+                answers
+            });
+            
+        }
+
+        res.json({tasks_course});
+
     }
 }

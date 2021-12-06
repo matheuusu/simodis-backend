@@ -1,5 +1,7 @@
 const { validationResult, matchedData } = require('express-validator');
-const { Questions } = require('../Models/Questions')
+
+const { Questions } = require('../Models/Questions');
+const { Answers } = require('../Models/Answers');
 
 const AnswersController = require('../Controller/AnswersController');
 
@@ -51,9 +53,5 @@ module.exports = {
         AnswersController.create(quest.id, data.answer_true, '', true );
 z
         res.json({});
-    },
-
-    groupQuestions: async ( req, res) => {
-
     }
 }

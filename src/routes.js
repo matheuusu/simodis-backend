@@ -16,6 +16,7 @@ const QuestiosValidator = require('./Validators/QuestionsValidator');
 
 const Auth = require('./middlewares/Auth');
 
+
 router.post('/user/signup', AuthValidator.signup, AuthController.signup);
 router.post('/user/signin', AuthValidator.signin, AuthController.signin);
 router.get('/user/recoverpassword', UserValidator.recoverPassword, UserController.recoverPassword);
@@ -26,10 +27,10 @@ router.get('/user/listusers', UserController.getUsers);
 router.get('/user/info', Auth.private, UserController.infoUsers);
 
 router.post('/course/add', CourseValidator.addCourse, Auth.private, CourseController.addCoursers);
-
 router.get('/course/mycourse', Auth.private, CourseController.myCourse);
-
+router.get('/course/tasks', CourseController.TaskCourse);
 router.get('/course/list', CourseController.getCoursers);
+
 
 router.post('/class/add', Auth.private, ClassController.create);
 
@@ -40,5 +41,6 @@ router.post('/grade/add', Auth.private, GradeController.create);
 router.get('/grade/list', GradeController.getGrades); 
 
 router.post('/question/create', QuestiosValidator.addQuestions, QuestionsController.create);
+
 
 module.exports = router;
