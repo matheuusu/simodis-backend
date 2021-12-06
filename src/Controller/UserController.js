@@ -122,10 +122,20 @@ module.exports = {
               gap: 1rem;
               align-content: flex-start;
             }
+
+            .text {
+              width: 80%;
+              margin: 0 auto;
+              padding: 1rem;
+            }
             </style>
           </head>
           <body>
-            <div class="container"></div>
+            <div class="container">
+              <div class="text">
+                <p>${token}</p>
+              </div>
+            </div>
           </body>
         </html>`
       },
