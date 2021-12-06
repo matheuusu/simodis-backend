@@ -117,10 +117,7 @@ module.exports = {
               color: #028082;
       
               display: flex;
-              flex-direction: row;
-              flex-wrap: wrap;
               gap: 1rem;
-              align-content: flex-start;
             }
 
             .text {
