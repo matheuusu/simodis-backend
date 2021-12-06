@@ -100,69 +100,34 @@ module.exports = {
         from: `${process.env.SMTP_USER}`,
         to: email,
         subject: 'Solicitação para alteração de senha',
-        html: `<html>
-                    <body>
-                        <div
-                        style="
-                            border-width: 1px;
-                            border-top: 1px solid;
-                            border-bottom: 1px solid;
-                            border-left: 1px solid;
-                            border-right: 1px solid;
-                            border-radius: 8px;
-                            width: 750px;
-                            height: 300px;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            background-color: rgb(240, 242, 255);
-                        "
-                        >
-                        <div
-                            style="
-                            background-color: #3485ff;
-                            width: 750px;
-                            margin-top: -48px;
-                            height: 150px;
-                            border-radius: 8px;
-                            border-bottom-left-radius: 0px;
-                            border-bottom-right-radius: 0px;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            "
-                        >
-                            <h1 style="color: white">Solicitação de alteração de Senha</h1>
-                            <h2 style="margin-top: 0px; color: white">
-                            Copie o codigo e cole no campo do token para alterar a senha
-                            </h2>
-                        </div>
-                        <div
-                            style="
-                            width: 600px;
-                            margin-top: 50px;
-                            height: 50px;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: center;
-                            align-items: center;
-                            border-radius: 1px solid;
-                            border-color: black;
-                            border-width: 1px;
-                            border-top: 1px solid;
-                            border-bottom: 1px solid;
-                            border-left: 1px solid;
-                            border-right: 1px solid;
-                            border-radius: 8px;
-                            "
-                        >
-                            <h3 style="color: black; font-size: 20px">${token}</h3>
-                        </div>
-                        </div>
-                </body>
-            </html>`
+        html: `
+        <html>
+          <head>
+            <style>
+              * {
+              box-sizing: border-box;
+            }
+      
+            .container {
+              background: #85d0bc;
+              border: 1px solid #028082;
+              width: 450px;
+              height: 400px;
+              margin: 0 auto;
+              color: #028082;
+      
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: 1rem;
+              align-content: flex-start;
+            }
+            </style>
+          </head>
+          <body>
+            <div class="container"></div>
+          </body>
+        </html>`
       },
       function (err) {
         if (err) {
