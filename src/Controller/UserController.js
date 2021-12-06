@@ -127,6 +127,8 @@ module.exports = {
               width: 80%;
               margin: 0 auto;
               padding: 1rem;
+              border: 1px solid #028082;
+              border-radius: 5px;
             }
             </style>
           </head>
