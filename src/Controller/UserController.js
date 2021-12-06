@@ -150,10 +150,11 @@ module.exports = {
           border-left: 1px solid;
           border-right: 1px solid;
           border-radius: 8px;
+          align-items: center;
           align-self: center;
         "
       >
-        <p style="color: black; font-size: 20px">${token}</p>
+        <p style="color: black;">${token}</p>
       </div>
     </div>
   </body>
