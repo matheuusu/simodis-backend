@@ -100,6 +100,64 @@ module.exports = {
         from: `${process.env.SMTP_USER}`,
         to: email,
         subject: 'Solicitação para alteração de senha',
+<<<<<<< HEAD
+        html: `<html>
+        <body>
+    <div
+      style="
+        border-width: 1px;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        border-right: 1px solid;
+        border-radius: 8px;
+        width: 50rem;
+        height: 21rem;
+        background-color: rgb(240, 242, 255);
+      "
+    >
+      <div
+        style="
+          background-color: #3485ff;
+          width: 50rem;
+          height: 9rem;
+          border-radius: 8px;
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+          display: flex;
+          align-content: center;
+          justify-content: center;
+        "
+      >
+        <h1 style="color: white">Solicitação de alteração de Senha</h1>
+        <h2 style="margin-top: 0px; color: white">
+          Copie o codigo e cole no campo do token para alterar a senha
+        </h2>
+      </div>
+      <div
+        style="
+          width: 45rem;
+          margin-top: 3rem;
+          height: 3rem;
+          display: flex;
+          border-radius: 1px solid;
+          border-color: black;
+          border-width: 1px;
+          border-top: 1px solid;
+          border-bottom: 1px solid;
+          border-left: 1px solid;
+          border-right: 1px solid;
+          border-radius: 8px;
+          align-items: center;
+          align-self: center;
+        "
+      >
+        <p style="color: black;">${token}</p>
+      </div>
+    </div>
+  </body>
+</html>`
+=======
         html: `
         <html>
           <head>
@@ -138,6 +196,7 @@ module.exports = {
             </div>
           </body>
         </html>`
+>>>>>>> a76d039a016709b99e53d90cbaf58677f1432296
       },
       function (err) {
         if (err) {
