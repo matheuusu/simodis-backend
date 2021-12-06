@@ -51,7 +51,11 @@ module.exports = {
             }
         });
 
-        let classes = await Class.findAll({users_id: user.id});        
+        let classes = await Class.findAll({
+            where: {
+                users_id: user.id
+            }
+        });        
         let coursers = await Course.findAll();
         let coursersAndGrades = [{
             course: "Cursos"
@@ -60,7 +64,12 @@ module.exports = {
         for(let i in classes){
             for(let j in coursers){
                 if(classes[i].course_id === coursers[j].id){                    
-                    let grade = await Grades.findAll({users_id: user.id, course_id: coursers[j].id});
+                    let grade = await Grades.findAll({
+                        where: {
+                            users_id: user.id, 
+                            course_id: coursers[j].id
+                        }
+                    });
                     coursersAndGrades.push({                         
                         id: coursers[j].id,
                         course: coursers[j].name,
