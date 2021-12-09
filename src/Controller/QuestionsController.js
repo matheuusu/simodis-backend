@@ -53,7 +53,6 @@ module.exports = {
     }
 
     AnswersController.create(quest.id, data.answer_true, '', true)
-    z
     res.json({})
   }
 
