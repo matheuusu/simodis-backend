@@ -61,6 +61,5 @@ router.post(
   QuestiosValidator.addQuestions,
   QuestionsController.create
 )
-router.put('/question/calcscors', Auth.private, QuestionsController.calcscors)
 
 module.exports = router
