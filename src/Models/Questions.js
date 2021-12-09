@@ -9,9 +9,6 @@ module.exports = {
         },
         course_id: {
             type: Sequelize.INTEGER
-        },
-        question_score: {
-            type: Sequelize.INTEGER
         }
     })
 }
