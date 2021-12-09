@@ -41,9 +41,6 @@ module.exports = {
           }
         }
       )
-
-    console.log(token);
-    console.log(user.isAdmin);
     res.json({ token, isAdmin: user.isAdmin })
   },
 
