@@ -33,10 +33,15 @@ module.exports = {
     const payload = (Date.now() + Math.random()).toString()
     const token = await bcrypt.hash(payload, 10)
 
-    user.token = token
-    await user.save()
-
-    res.json({ token: user.token, isAdmin: user.isAdmin })
+    await Usuarios.update(
+        { token },
+        {
+          where: {
+            email: data.email
+          }
+        }
+      )
+    res.json({ token, isAdmin: user.isAdmin })
   },
 
   signup: async (req, res) => {
