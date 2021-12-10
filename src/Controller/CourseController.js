@@ -57,11 +57,7 @@ module.exports = {
       }
     })
     let coursers = await Course.findAll()
-    let coursersAndGrades = [
-      {
-        course: 'Cursos'
-      }
-    ]
+    let coursersAndGrades = [{}]
 
     for (let i in classes) {
       for (let j in coursers) {
