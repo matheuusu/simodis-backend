@@ -49,10 +49,10 @@ module.exports = {
     })
 
     for (let i = 1; i < title.length; i++) {
-      AnswersController.create(quest.id, '', title[i], false)
+      await AnswersController.create(quest.id, '', title[i], false)
     }
 
-    AnswersController.create(quest.id, data.answer_true, '', true)
+    await AnswersController.create(quest.id, data.answer_true, '', true)
     res.json({OK: true})
   }
 
