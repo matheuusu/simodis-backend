@@ -53,8 +53,8 @@ module.exports = {
     }
 
     await AnswersController.create(quest.id, data.answer_true, '', true)*/
-    const teste = data.split(',')
-    console.log(teste[0]);
+    
+    console.log(typeof(data.title);
     res.json({OK: true})
   }
 
