@@ -54,7 +54,7 @@ module.exports = {
 
     await AnswersController.create(quest.id, data.answer_true, '', true)*/
     
-    console.log(typeof(data.title);
+    console.log(typeof(data.title));
     res.json({OK: true})
   }
 
