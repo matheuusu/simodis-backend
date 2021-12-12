@@ -17,7 +17,7 @@ module.exports = {
 
     const data = matchedData(req)
 
-    Questions.sync()
+    /*Questions.sync()
 
     const questions = await Questions.findAll({})
     const title = data.title.split(',')
@@ -52,7 +52,8 @@ module.exports = {
       await AnswersController.create(quest.id, '', title[i], false)
     }
 
-    await AnswersController.create(quest.id, data.answer_true, '', true)
+    await AnswersController.create(quest.id, data.answer_true, '', true)*/
+    console.log(data.title "  " + data.answer_true + "  " + data.course_id);
     res.json({OK: true})
   }
 
