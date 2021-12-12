@@ -20,10 +20,9 @@ module.exports = {
     Questions.sync()
 
     const questions = await Questions.findAll({})
-    const title = data.title.split('§')
     const id_questions = 0
     let count = 0
-    let reqQuestion = title[0].split(' ')
+    let reqQuestion = data.title.split(' ')
     for (let i in questions) {
       let question = questions[i].title.split(' ')
       for (let j in question) {
@@ -39,7 +38,7 @@ module.exports = {
     }
 
     const newquestion = Questions.build({
-      title: title[0],
+      title: data.title,
       course_id: data.course_id
     })
     await newquestion.save()
