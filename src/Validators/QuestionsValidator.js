@@ -8,6 +8,26 @@ module.exports = {
     course_id: {
       notEmpty: true
     },
+    ,
+    
+    answerOne: {
+      optional: true
+    },
+    ,
+    
+    answerTwo: {
+      optional: true
+    },
+    ,
+    
+    answerThre: {
+      optional: true
+    },
+    ,
+    
+    answerFour: {
+      optional: true
+    },
     answer_true: {
       optional: true
     }
