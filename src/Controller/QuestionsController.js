@@ -20,7 +20,7 @@ module.exports = {
     Questions.sync()
 
     const questions = await Questions.findAll({})
-    const title = data.title.split(',')
+    const title = data.title.split('§')
     const id_questions = 0
     let count = 0
     let reqQuestion = title[0].split(' ')
