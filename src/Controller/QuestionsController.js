@@ -34,7 +34,7 @@ module.exports = {
     }
 
     if ((count / reqQuestion.length) * 100 >= 50) {
-      res.json({Igual: true)
+      res.json({Igual: true})
       return
     }
 
