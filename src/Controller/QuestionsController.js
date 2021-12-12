@@ -34,7 +34,7 @@ module.exports = {
     }
 
     if ((count / reqQuestion.length) * 100 >= 50) {
-      res.send('Igual')
+      res.json({Igual: true)
       return
     }
 
@@ -53,7 +53,7 @@ module.exports = {
     }
 
     AnswersController.create(quest.id, data.answer_true, '', true)
-    res.json({})
+    res.json({OK: true})
   }
 
   // calcscors: async (req, res) => {
