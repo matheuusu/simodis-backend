@@ -69,23 +69,23 @@ module.exports = {
   //   const Grades = new Grades()
   //   let count = 0
 
-  //   // for (let index = 0; index < questions; index++) {
-  //   //   const answer = await answers.findOne({
-  //   //     where: {
-  //   //       id: questions[index].answrers_id
-  //   //     }
-  //   //   })
+  //   for (let index = 0; index < questions; index++) {
+  //     const answer = await answers.findOne({
+  //       where: {
+  //         id: questions[index].answrers_id
+  //       }
+  //     })
 
-  //   //   if (answer?.isTrue) {
-  //   //     const question = await QuestionsModel.findOne({
-  //   //       where: {
-  //   //         id: questions[index].question_id
-  //   //       }
-  //   //     })
+  //     if (answer?.isTrue) {
+  //       const question = await QuestionsModel.findOne({
+  //         where: {
+  //           id: questions[index].question_id
+  //         }
+  //       })
 
-  //   //     count += question.scors
-  //   //   }
-  //   // }
+  //       count += question.scors
+  //     }
+  //   }
 
   //   const [firstQuestion] = questions
   //   const question1 = QuestionsModel.findOne({
