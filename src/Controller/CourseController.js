@@ -126,7 +126,7 @@ module.exports = {
       /*if(answer.isTrue == 1){
         ++count_success;
       }*/
-      console.log(answer)
+      console.log(answer.isTrue)
     }
 
     res.json({count_success});
