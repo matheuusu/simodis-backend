@@ -124,7 +124,7 @@ module.exports = {
         }
       })
 
-      if({'answer.isTrue': 1}){
+      if({'answer.isTrue': true}){
         count_success++;
       }
     }
