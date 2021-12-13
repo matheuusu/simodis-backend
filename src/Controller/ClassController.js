@@ -5,7 +5,7 @@ module.exports = {
   create: async (req, res) => {
     let { token, id } = await req.query
 
-    let user = await Usuarios.findOne({
+    /*let user = await Usuarios.findOne({
       where: {
         token: token
       }
@@ -37,7 +37,9 @@ module.exports = {
       course_id: id
     })
 
-    await newUser.save()
+    await newUser.save()*/
+    
+    console.log(token + " " + id);
 
     res.json({ Ok: true })
   },
