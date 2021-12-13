@@ -118,7 +118,7 @@ module.exports = {
     count_success = 0;
 
     for(let i=0; i < answers_id.length; i++){
-      const answer = await Answers.findOne({
+      let answer = await Answers.findOne({
         where:{
           id: answers_id[i]
         }
