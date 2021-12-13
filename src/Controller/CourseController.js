@@ -129,6 +129,6 @@ module.exports = {
       }
     }
 
-    res.json({answers_id});
+    res.json({count_success});
   }
 }
