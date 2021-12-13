@@ -112,7 +112,7 @@ module.exports = {
   },
 
   ResolveTask: async (req, res) => {
-    const { ids_answers } = req.body;
+    const { ids_answers } = req.query;
 
     answers_id = ids_answers.split(",");
     count_success = 0;
