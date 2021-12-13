@@ -46,7 +46,7 @@ router.post(
 )
 router.get('/course/mycourse', Auth.private, CourseController.myCourse)
 router.get('/course/tasks', CourseController.TaskCourse)
-router.post('/course/resolvetaks', CourseController.ResolveTask);
+router.get('/course/resolvetaks', CourseController.ResolveTask);
 router.get('/course/list', CourseController.getCoursers)
 
 router.post('/class/add', Auth.private, ClassController.create)
