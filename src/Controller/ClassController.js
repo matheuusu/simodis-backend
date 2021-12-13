@@ -3,7 +3,7 @@ const { Class } = require('../Models/Class')
 
 module.exports = {
   create: async (req, res) => {
-    let { token, id } = await req.query
+    let { token, id } = await req.body;
 
     /*let user = await Usuarios.findOne({
       where: {
