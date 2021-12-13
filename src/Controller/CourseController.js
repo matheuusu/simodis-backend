@@ -117,7 +117,7 @@ module.exports = {
     answers_id = ids_answers.split(",");
     count_success = 0;
   let answer = {};
-    for(let i=0; i < (answers_id.length - 1); i++){
+    for(let i=1; i < (answers_id.length - 1); i++){
       if(answers_id[i] !== ','){
           answer = await Answers.findOne({
           where:{
