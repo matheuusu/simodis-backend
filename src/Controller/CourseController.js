@@ -116,10 +116,10 @@ module.exports = {
 
     answers_id = ids_answers.split(",");
     count_success = 0;
-
+  let answer = {};
     for(let i=0; i < answers_id.length; i++){
       if(answers_id[i] !== ','){
-        let answer = await Answers.findOne({
+          answer = await Answers.findOne({
           where:{
             id: answers_id[i]
           }
