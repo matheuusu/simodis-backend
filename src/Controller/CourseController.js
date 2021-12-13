@@ -109,5 +109,25 @@ module.exports = {
     }
 
     res.json({ tasks_course })
+  },
+
+  ResolveTask: async (req, res) => {
+    const { ids_answers } = req.body;
+
+    answers_id = ids_answers.split(",");
+    count_success = 0;
+    for(let i in answers_id){
+      const answer = await Answers.findOne({
+        where:{
+          id: answers_id[i]
+        }
+      })
+
+      if(answer.isTrue){
+        ++count_success;
+      }
+    }
+
+    res.json({count_success});
   }
 }
