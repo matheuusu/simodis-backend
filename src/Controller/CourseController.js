@@ -123,11 +123,9 @@ module.exports = {
         }
       })
 
-      /*if(answer.isTrue == 1){
+      if(answer.isTrue == 1){
         ++count_success;
-      }*/
-
-      console.log(answer)
+      }
     }
 
     res.json({count_success});
