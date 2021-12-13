@@ -50,10 +50,8 @@ module.exports = {
     
     await AnswersController.create(quest.id, '', data.answerOne, false)
     await AnswersController.create(quest.id, '', data.answerTwo, false)
-    await AnswersController.create(quest.id, '', data.answerThre, false)
+    await AnswersController.create(quest.id, '', data.answerThree, false)
     await AnswersController.create(quest.id, '', data.answerFour, false)
-    
-
     await AnswersController.create(quest.id, data.answer_true, '', true)
     res.json({OK: true})
   }
