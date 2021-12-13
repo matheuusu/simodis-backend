@@ -117,18 +117,18 @@ module.exports = {
     answers_id = ids_answers.split(",");
     count_success = 0;
     const answer = {}
-    for(let i in answers_id){
+    /*for(let i in answers_id){
       answer = await Answers.findOne({
         where:{
           id: answers_id[i]
         }
       })
 
-      /*if(answer.isTrue == 1){
+      if(answer.isTrue == 1){
         ++count_success;
-      }*/
-    }
+      }
+    }*/
 
-    res.json({answer});
+    res.json({answers_id});
   }
 }
