@@ -123,7 +123,7 @@ module.exports = {
         }
       })
 
-      if(answer.isTrue){
+      if(answer.isTrue == 1){
         ++count_success;
       }
     }
