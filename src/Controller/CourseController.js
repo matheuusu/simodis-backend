@@ -129,6 +129,6 @@ module.exports = {
       }
     }
 
-    res.json({count_success});
+    res.json(count_success);
   }
 }
