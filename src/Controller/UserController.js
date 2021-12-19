@@ -165,7 +165,7 @@ module.exports = {
       }
     )
 
-    res.json({ token, mensagem: 'E-mail enviado com sucesso!' })
+    res.json({})
   },
 
   altPassword: (req, res) => {

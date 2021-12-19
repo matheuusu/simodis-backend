@@ -9,9 +9,6 @@ module.exports = {
     description: {
       notEmpty: true,
       errorMessage: 'Informe a descricao'
-    },
-    users_id: {
-      optional: true
     }
   })
 }

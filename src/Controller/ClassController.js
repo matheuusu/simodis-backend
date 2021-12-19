@@ -18,26 +18,12 @@ module.exports = {
 
     Class.sync()
 
-    let classCheck = await Class.findAll({})
-
-    if (classCheck) {
-      for (let i in classCheck) {
-        if (
-          user.id === classCheck[i].users_id &&
-          classCheck[i].course_id === parseInt(id)
-        ) {
-          res.json({ error: 'Usuário já cadastrado no curso!' })
-          return
-        }
-      }
-    }
-
-    const newUser = await Class.build({
+    const newclass = await Class.build({
       users_id: user.id,
       course_id: id
     })
 
-    await newUser.save()
+    await newclass.save()
     
     console.log(token + " " + id);
 
